@@ -1,77 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROJEC7v1s10n - We Sell The Vision</title>
-    
-    <!-- 1. Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- 2. Load 3D Libraries (three.js is required for vanta.js) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.21/vanta.net.min.js"></script>
-    
-    <!-- 3. Custom Styles (Fonts, Gradients, Animations) -->
-    <!-- The <style> tag below contains all the CSS -->
-    <style>
-        /* ... CSS content goes here ... */
-    </style>
-</head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PROJEC7v1s10n - We Sell The Vision</title>
 
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts (kept minimal) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+  
+  <!-- 3D / Particle libs (required by 3ddesign.js) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.21/vanta.net.min.js" defer></script>
+</head>
 <body class="bg-black text-gray-200">
 
-    <!-- ===== Header & Navbar ===== -->
-    <header class="fixed top-0 left-0 w-full z-50 p-4">
-        <!-- ... nav content ... -->
-    </header>
+  <!-- ===== Header & Navbar ===== -->
+  <header class="fixed top-0 left-0 w-full z-50 p-4">
+    <nav class="dark-glass max-w-5xl mx-auto flex justify-between items-center p-4">
+      <a href="#hero" class="text-2xl font-bold logo-glow-red">PROJEC7v1s10n</a>
 
-    <main>
-        <!-- ===== Hero Section ===== -->
-        <section id="hero" class="relative h-screen flex items-center justify-center text-center overflow-hidden">
-            <!-- 3D Vanta.js Background -->
-            <div id="vanta-bg"></div>
-            
-            <!-- Hero Content -->
-            <div class="relative z-10 p-4">
-                <!-- ... hero content ... -->
-            </div>
-        </section>
+      <div class="hidden md:flex items-center space-x-6">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#whatwedo" class="nav-link">What We Do</a>
+        <a href="#contactPanel" class="nav-link">Contact</a>
+      </div>
 
-        <!-- ===== Features Section ===== -->
-        <section id="features" class="py-24 px-4 relative z-10 bg-black">
-            <div class="max-w-6xl mx-auto">
-                <!-- ... features content ... -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- ... feature cards ... -->
-                </div>
-            </div>
-        </section>
+      <div class="flex items-center space-x-3">
+        <a href="#contactPanel" class="btn-red-gradient text-white font-medium py-2 px-4 rounded-lg shadow-lg">Get Vision</a>
+        <button id="mobile-menu-btn" class="md:hidden text-gray-300">Menu</button>
+      </div>
+    </nav>
+  </header>
 
-        <!-- ===== About Section ===== -->
-        <section id="about" class="py-24 px-4 relative z-10 bg-gray-900 bg-opacity-50">
-            <div class="dark-glass max-w-4xl mx-auto p-8 md:p-12 scroll-reveal-init">
-                <!-- ... about content ... -->
-            </div>
-        </section>
+  <main>
+    <!-- ===== Hero Section ===== -->
+    <section id="hero" class="relative h-screen flex items-center justify-center text-center overflow-hidden">
+      <!-- Vanta background container -->
+      <div id="vanta-bg" aria-hidden="true"></div>
 
-        <!-- ===== Contact Section ===== -->
-        <section id="contact" class="py-24 px-4 relative z-10 bg-black">
-            <div class="max-w-2xl mx-auto">
-                <!-- ... contact form ... -->
-            </div>
-        </section>
-    </main>
+      <!-- Hero Content -->
+      <div class="relative z-10 p-4">
+        <h1 class="text-5xl md:text-8xl logo-glow-red mb-4">PROJEC7v1s10n</h1>
+        <p class="text-xl md:text-3xl text-gray-300 font-light">We Sell The Vision.</p>
+      </div>
+    </section>
 
-    <!-- ===== Footer ===== -->
-    <footer class="py-8 bg-black border-t border-gray-900 relative z-10">
-        <!-- ... footer content ... -->
-    </footer>
+    <!-- ===== Features Section ===== -->
+    <section id="features" class="py-24 px-4 relative z-10 bg-black">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold text-center text-white mb-12 scroll-reveal-init">The Architecture of Innovation</h2>
 
-    <!-- ===== JavaScript ===== -->
-    <!-- The <script> tag below contains all the JavaScript -->
-    <script>
-        /* ... JavaScript content goes here ... */
-    </script>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- 3D Object Card -->
+          <div class="dark-glass p-6 scroll-reveal-init">
+            <h3 class="text-2xl font-semibold text-red-500 mb-3">Conceptual 3D</h3>
+            <p class="text-gray-300 mb-4">We visualize your idea in 3D space, giving it form and substance.</p>
+            <div id="3d-object-canvas" class="w-full h-[250px]"></div>
+          </div>
+
+          <!-- Blueprints -->
+          <div class="dark-glass p-6 scroll-reveal-init" style="transition-delay: 120ms;">
+            <h3 class="text-2xl font-semibold text-red-500 mb-3">Strategic Blueprints</h3>
+            <p class="text-gray-300">Beyond the concept — actionable plans and a roadmap to execution.</p>
+            <ul class="list-disc list-inside text-gray-400 mt-4 space-y-2">
+              <li>Market Feasibility</li>
+              <li>Monetization Strategy</li>
+              <li>Technology Stack</li>
+            </ul>
+          </div>
+
+          <!-- Concepts -->
+          <div class="dark-glass p-6 scroll-reveal-init" style="transition-delay: 240ms;">
+            <h3 class="text-2xl font-semibold text-red-500 mb-3">Market-Ready Concepts</h3>
+            <p class="text-gray-300">Fully-formed visions packaged for dev teams or investors.</p>
+            <p class="text-gray-400 mt-4">We bridge the gap between a fleeting thought and a tangible product.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== What We Do (hover-panel) ===== -->
+    <section id="whatwedo" class="py-24 px-6 bg-black text-center relative z-10">
+      <div class="max-w-4xl mx-auto hover-panel dark-glass p-10">
+        <h2 class="text-4xl font-bold text-white mb-6">What We Do</h2>
+        <p class="text-lg text-gray-300 leading-relaxed">
+          At <span class="text-red-500 font-semibold">PROJEC7v1s10n</span>, we transform abstract ideas into market-ready
+          concepts. We handle strategy, design, prototyping, and go-to-market playbooks so founders can ship fast.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Contact Panel (with Gmail + Form options) ===== -->
+    <section id="contactPanel" class="py-24 px-6 bg-black text-center relative z-10">
+      <div class="max-w-3xl mx-auto dark-glass p-10">
+        <h2 class="text-4xl font-bold text-white mb-6">Get in Touch</h2>
+        <p class="text-gray-300 mb-8">Collaborate or pitch us. Use whichever option works: Gmail compose or quick form.</p>
+
+        <!-- Option A: Open Gmail Compose (opens in new tab if user uses Gmail web) -->
+        <div class="mb-6">
+          <button id="open-gmail-btn" class="btn-red-gradient text-white font-bold py-3 px-6 rounded-lg text-lg">
+            ✉️ Open Gmail Compose
+          </button>
+          <button id="open-mailto-btn" class="ml-3 border border-gray-700 text-gray-300 font-medium py-2 px-4 rounded-lg">
+            Open Mail Client
+          </button>
+        </div>
+
+        <div class="text-sm text-gray-400 mb-6">Or submit this quick contact form (sends via FormSubmit.co)</div>
+
+        <!-- Option B: Form (FormSubmit.co) -->
+        <form id="contact-form" action="https://formsubmit.co/hacknow133@gmail.com" method="POST" class="space-y-4">
+          <input type="hidden" name="_subject" value="New Inquiry from PROJEC7v1s10n Website">
+          <input type="hidden" name="_next" value="https://thank-you-page.com">
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input id="form-name" name="name" type="text" required placeholder="Full name" class="input-field" />
+            <input id="form-email" name="email" type="email" required placeholder="Email" class="input-field" />
+          </div>
+
+          <textarea id="form-message" name="message" rows="5" required placeholder="Describe your challenge" class="input-field"></textarea>
+
+          <div class="flex items-center gap-4">
+            <button type="submit" class="btn-red-gradient text-white font-bold py-3 px-6 rounded-lg">Send via Form</button>
+            <button id="prefill-gmail-from-form" type="button" class="border border-gray-700 text-gray-300 py-2 px-4 rounded-lg">
+              Prefill Gmail with this Message
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-8 bg-black border-t border-gray-900 relative z-10">
+    <div class="max-w-6xl mx-auto text-center text-gray-500">
+      <p>&copy; 2025 PROJEC7v1s10n. All visions reserved.</p>
+    </div>
+  </footer>
+
+  <!-- App logic -->
+  <script src="app.js" defer></script>
+  <!-- 3D / Particle effects -->
+  <script src="3ddesign.js" defer></script>
 </body>
 </html>
