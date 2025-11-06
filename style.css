@@ -1,83 +1,128 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap');
+/* style.css - global styles and component polish */
 
-body {
-    font-family: 'Inter', sans-serif;
-    /* A subtle gradient from black to a deep red/purple */
-    background-color: #000;
+/* Font */
+:root {
+  --glass-bg: rgba(10,10,10,0.32);
+  --glass-border: rgba(255,255,255,0.08);
+  --accent-red: #dc2626;
+  --accent-deep: #7f1d1d;
+  --muted: #9ca3af;
 }
 
-/* Dark Glassmorphism Effect */
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background-color: #000;
+  color: #e5e7eb;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Glassmorphism card */
 .dark-glass {
-    background: rgba(10, 10, 10, 0.3); /* Dark, semi-transparent base */
-    backdrop-filter: blur(12px); /* The "frosted glass" effect */
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Faint white border */
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
 }
 
-/* Glowing Red Text for Logo/Hero */
+/* Logo glow */
 .logo-glow-red {
-    font-weight: 900;
-    color: #fff;
-    text-shadow:
-        0 0 7px #fff,
-        0 0 10px #fff,
-        0 0 21px #fff,
-        0 0 42px #ff0000,
-        0 0 82px #ff0000,
-        0 0 92px #ff0000,
-        0 0 102px #ff0000,
-        0 0 151px #ff0000;
-    animation: flicker 1.5s infinite alternate;
+  font-weight: 900;
+  color: #fff;
+  text-shadow:
+    0 0 7px #fff,
+    0 0 21px #fff,
+    0 0 42px #ff0000,
+    0 0 82px #ff0000;
+  animation: flicker 1.6s infinite alternate;
 }
 
-/* Subtle flicker animation */
+/* flicker */
 @keyframes flicker {
   to {
     text-shadow:
-        0 0 7px #fff,
-        0 0 10px #fff,
-        0 0 21px #fff,
-        0 0 42px #ff0000,
-        0 0 82px #ff0000;
+      0 0 7px #fff,
+      0 0 21px #fff,
+      0 0 42px #ff0000;
   }
 }
 
-/* Red Gradient Button */
+/* Buttons */
 .btn-red-gradient {
-    background-image: linear-gradient(to right, #dc2626, #7f1d1d);
-    transition: all 0.3s ease;
+  background-image: linear-gradient(90deg, var(--accent-red), var(--accent-deep));
+  transition: transform .25s cubic-bezier(.2,.9,.3,1), box-shadow .25s;
+  border-radius: 8px;
+  display: inline-block;
 }
-.btn-red-gradient:hover {
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 10px 20px rgba(220, 38, 38, 0.25);
+.btn-red-gradient:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 30px rgba(220,38,38,0.18); }
+
+/* Nav link */
+.nav-link {
+  color: #D1D5DB;
+  text-decoration: none;
+  transition: color .18s;
+}
+.nav-link:hover { color: #ff6b6b; }
+
+/* Input Field */
+.input-field {
+  width: 100%;
+  background: rgba(18,18,18,0.55);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: .75rem .9rem;
+  border-radius: 10px;
+  color: #fff;
+  outline: none;
+  transition: box-shadow .15s, border-color .15s;
+}
+.input-field:focus {
+  border-color: rgba(220,38,38,0.9);
+  box-shadow: 0 4px 18px rgba(220,38,38,0.06);
 }
 
-/* Scroll Reveal Animations */
+/* Hover-panel entrance */
+.hover-panel {
+  transform: translateY(40px);
+  opacity: 0;
+  transition: transform .9s cubic-bezier(.2,.9,.3,1), opacity .9s;
+}
+.hover-panel.visible { transform: translateY(0); opacity: 1; }
+
+/* Scroll reveal helper (used for multiple sections) */
 .scroll-reveal-init {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(.175,.885,.32,1.275);
 }
 .scroll-reveal-active {
-    opacity: 1;
-    transform: translateY(0);
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* Ensure 3D canvas is responsive */
-#3d-object-canvas canvas {
-    width: 100% !important;
-    height: 100% !important;
-    min-height: 250px;
-}
+/* 3D canvas styling - ensure responsive */
+#3d-object-canvas { width: 100%; height: 250px; min-height: 180px; display:block; }
 
-/* Vanta.js background */
+/* vanta background covers hero */
 #vanta-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 0;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+}
+
+/* Utility */
+.text-muted { color: var(--muted); font-size: .95rem; }
+
+/* small screens tweak */
+@media (max-width: 640px) {
+  .logo-glow-red { font-size: 28px; }
+  #hero h1 { font-size: 48px; }
 }
