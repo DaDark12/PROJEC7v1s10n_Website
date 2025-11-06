@@ -1,0 +1,273 @@
+/* ======== 1. Global Setup & Variables ======== */
+:root {
+    --crimson: #DC143C;
+    --purple: #8A2BE2;
+    --midnight-blue: #191970;
+    --white: #F0F2F5;
+    --text-color: #EAEAEA;
+    --glass-bg: rgba(255, 255, 255, 0.05); /* Key for glassmorphism */
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Handles smooth anchor link clicks */
+}
+
+body {
+    font-family: var(--font-main);
+    background: linear-gradient(135deg, var(--midnight-blue), #000);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+main {
+    padding-top: 80px; /* Offset for the fixed navbar */
+}
+
+/* ======== 2. Reusable Components (Glass & Buttons) ======== */
+
+/* The Glassmorphism Effect */
+.glass-card {
+    background: var(--glass-bg);
+    border-radius: 16px;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px); /* This is the frosted glass effect! */
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+}
+
+/* The Premium CTA Button */
+.cta-button {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--crimson), var(--purple));
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(220, 20, 60, 0.4);
+}
+
+.cta-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(138, 43, 226, 0.5);
+    background: linear-gradient(90deg, var(--purple), var(--crimson));
+}
+
+/* ======== 3. Navbar ======== */
+.main-header {
+    position: fixed;
+    top: 1rem;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 0 5%;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.75rem 1.5rem; /* macOS-style padding */
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--white);
+}
+
+.nav-button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+}
+
+/* ======== 4. Hero Section ======== */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 1rem;
+    overflow: hidden; /* Ensures particle bg doesn't overflow */
+}
+
+/* For the JS-based particle background */
+#particle-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-logo-glow {
+    font-size: 6rem;
+    font-weight: 700;
+    color: var(--white);
+    /* The "glowing" logo effect */
+    text-shadow: 
+        0 0 10px #fff,
+        0 0 20px #fff,
+        0 0 40px var(--crimson),
+        0 0 80px var(--crimson);
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--text-color);
+    margin: 1rem 0 2rem;
+}
+
+/* ======== 5. Content Sections (Features, About, Contact) ======== */
+.content-section {
+    padding: 6rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--white);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card {
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--purple); /* Example color */
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* ======== 6. Contact Form ======== */
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    padding: 12px;
+    font-family: var(--font-main);
+    color: var(--white);
+    font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--purple);
+    box-shadow: 0 0 10px var(--purple);
+}
+
+/* ======== 7. Scroll Animations ======== */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ======== 8. Responsive Design ======== */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none; /* Simple hide for mobile; a full menu needs more JS */
+    }
+    .hero-logo-glow {
+        font-size: 4rem;
+    }
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    .content-section {
+        padding: 4rem 5%;
+    }
+    .section-title {
+        font-size: 2rem;
+    }
+}
